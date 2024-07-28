@@ -1,12 +1,13 @@
 # OBJECT --> instance of a class
 # everything in python is a class
 # method --> functions belonging to a class instance or class itself
-# - act on objects
+# - acts on objects or classes
 # CLASS --> has attributes and methods
-# self --> represents the instance of our class
-# - use self to refer to instances methods and attributes
+# self --> reference to a class instance/object
+# cls --> reference to class 
+# - use self to refer to an instances methods and attributes
 # - every method takes a self argument which is invisible passed when an object method called
-# cls --> represents class
+# cls --> represents class itself as a whole
 
 # MODULE --> python file 
 # optional -m tag specifies which python file to run
@@ -16,35 +17,36 @@
 # - inherit parents methods and attributes
 # - can NOT OVERLOAD FUNCTIONS IN PYTHON
 # - can OVERRIDE DERIVED CLASSES
-# to inherit from some parent class use class class_name(parent_class)
-# specify parent class in parenthesis
-# super().__init__()
+# to inherit from some parent class use --> class class_name(parent_class, parent_class, ...)
+# specify parent classes in parenthesis
+# super().__init__() --> calls the parent class constructor
+# super reference to superclass or parent class
 
 # f"{argument}"
 
 class Math:
-  # static methods --> do not have access to a class instance, DO NOT CHANGE ANYTHING
+  # STATIC methods --> does not have access to class attributes/methods, DOES NOT CHANGE ANYTHING
   # to denote use function decorator
+  # to use className.staticMethod()
   @staticmethod
   def add(n1, n2):
     return n1 + n2
 
 # to use do not need to make a class instance can directly call method with class name
-print(Math.add(5, 4))
+# print(Math.add(5, 4))
 
-
-# we can have global class attributes by definiing variable within class but not in function
-# to refer to global class attribute class_name.global_attribute --> shared among all class instances
+# we can have (global) class attributes by definiing variable within class but not in function
+# to refer to (global) class attribute class_name.global_attribute --> shared among all class instances
 class Person:
   number_of_people = 0
   def __init__(self, name):
     self.name = name
     Person.number_of_people += 1  # can increment global class attribute in constructor
   
-  # can have class methods that don't act on a class instance but the class itself as a whole
+  # can have class methods that don't act on class instances but the class itself
   # denote by function decorator
   @classmethod
-  def number_of_people_(cls):
+  def number_of_people_(cls): # takes cls argument --> reference to class
     return cls.number_of_people 
 
   @classmethod
@@ -64,7 +66,7 @@ class Pet:
 
 class Dog(Pet):
   def __init__(self, name, age):
-    super().__init__(name, age)  # call parent constructor
+    super().__init__(name, age)  # call parent constructor with required arguments for constructor
   def bark(self):
     print("bark")
 
@@ -76,7 +78,6 @@ class Fish(Pet):
     # super() function used to refer to parent or super class
     super().__init__(name, age, color)  # call parent classes constructor
     self.color = color  # can set additional class attributes
-  pass
 
 
 class Dog:
