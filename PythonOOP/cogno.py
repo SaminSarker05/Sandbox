@@ -114,6 +114,9 @@ class Course:
     self.name = name
     self.max_students = max_students
     self.students = []
+
+    # convention to make private fields start with underscore
+    self._secret = "string"  # still accessible outside class
   
   def add_student(self, student):
     if len(self.students) < self.max_students:
@@ -127,3 +130,5 @@ class Course:
       total_points += student.get_grade()
     
     return total_points // len(self.students)
+
+c = Course("name", 12)
