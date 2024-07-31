@@ -32,4 +32,8 @@ finally:
 
 
 """
+file modes:
+  a append
+  w write
+  r read
 """
