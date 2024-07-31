@@ -32,6 +32,20 @@ private:
   bool hired;
 };
 
+class Noble {
+public:
+  // initilize primitives by passing values into their constructors
+  Noble(const string& a_name) : name(a_name), alive{true} {}
+
+  // getters
+  const string& get_name() const { return name; };  // alwys return strings by const referece so can't be changed outside object
+  bool is_alive() const { return alive; };
+
+private:
+  string name;
+  bool alive;
+};
+
 int main() {
   // entry point for script
   cout << "hello world" << endl;
