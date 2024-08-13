@@ -126,3 +126,36 @@ class Game:
         print(row)
       print('')
     
+    def playMove(self, player):
+      self.printBoard()
+      print(f"{player.getName()}'s turn to move")
+      col_cnt = self._grid.getColumn()
+
+      IO = int(input(f"Enter column between 0 and {col_cnt - 1} to add piece"))
+      move = self._grid.placePiece(IO, player.getPieceColor())
+
+      return (move, IO)
+    
+    def playRound(self):
+      while True:
+        for player in self._players:
+          row, col = self.playMove(player)
+          clr = player.getPieceColor()
+
+          if self._grid.checkWin(self._connect_n, row, col, clr):
+            self._score[player.getName()] += 1
+            return player 
+    
+    def play(self):
+      winner = None
+      max_score = 0
+      while max_score < self._targetScore:
+        winner = self.playRound()
+        print(f"{winner.getName()} won the round")
+        max_score = max(max_score, self._score[winner.getName()])
+
+        # restart grid for new round
+        self._grid.initGrid()
+      print(f"{winner.getName()} won the game!")
+
+  
