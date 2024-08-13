@@ -1,3 +1,8 @@
+"""
+design of game connect 4 using OOP in python
+"""
+
+
 import enum
 
 # enumerations - symbolic names bound to unique constant values; implemented using class
@@ -53,7 +58,7 @@ class Grid:
     # check anti-diagonally
     r, c = row, col 
     while 0 <= r < self.rows and 0 <= c < self.cols:
-      if self_grid[r][c] == piece: cnt += 1
+      if self._grid[r][c] == piece: cnt += 1
       else: cnt = 0
       if cnt == connect_n: return True
       r += 1
@@ -61,7 +66,7 @@ class Grid:
     
     r, c = row, col 
     while 0 <= r < self.rows and 0 <= c < self.cols:
-      if self_grid[r][c] == piece: cnt += 1
+      if self._grid[r][c] == piece: cnt += 1
       else: cnt = 0
       if cnt == connect_n: return True
       r -= 1
@@ -70,7 +75,7 @@ class Grid:
     # check diagonally
     r, c = row, col 
     while 0 <= r < self.rows and 0 <= c < self.cols:
-      if self_grid[r][c] == piece: cnt += 1
+      if self._grid[r][c] == piece: cnt += 1
       else: cnt = 0
       if cnt == connect_n: return True
       r -= 1
@@ -78,7 +83,7 @@ class Grid:
     
     r, c = row, col 
     while 0 <= r < self.rows and 0 <= c < self.cols:
-      if self_grid[r][c] == piece: cnt += 1
+      if self._grid[r][c] == piece: cnt += 1
       else: cnt = 0
       if cnt == connect_n: return True
       r += 1
@@ -115,47 +120,50 @@ class Game:
     for player in self._players:
       self._score[player.getName()] = 0
 
-    def printBoard(self):
-      grid = self._grid.getGrid()
-      for i in range(len(grid)):
-        row = ''
-        for piece in grid[i]:
-          if piece == GridPosition.EMPTY: row += '0 '
-          elif piece == GridPosition.RED: row += 'R '
-          elif piece == GridPosition.YELLOW: row += 'Y '
-        print(row)
-      print('')
-    
-    def playMove(self, player):
-      self.printBoard()
-      print(f"{player.getName()}'s turn to move")
-      col_cnt = self._grid.getColumn()
-
-      IO = int(input(f"Enter column between 0 and {col_cnt - 1} to add piece"))
-      move = self._grid.placePiece(IO, player.getPieceColor())
-
-      return (move, IO)
-    
-    def playRound(self):
-      while True:
-        for player in self._players:
-          row, col = self.playMove(player)
-          clr = player.getPieceColor()
-
-          if self._grid.checkWin(self._connect_n, row, col, clr):
-            self._score[player.getName()] += 1
-            return player 
-    
-    def play(self):
-      winner = None
-      max_score = 0
-      while max_score < self._targetScore:
-        winner = self.playRound()
-        print(f"{winner.getName()} won the round")
-        max_score = max(max_score, self._score[winner.getName()])
-
-        # restart grid for new round
-        self._grid.initGrid()
-      print(f"{winner.getName()} won the game!")
-
+  def printBoard(self):
+    grid = self._grid.getGrid()
+    for i in range(len(grid)):
+      row = ''
+      for piece in grid[i]:
+        if piece == GridPosition.EMPTY: row += '0 '
+        elif piece == GridPosition.RED: row += 'R '
+        elif piece == GridPosition.YELLOW: row += 'Y '
+      print(row)
+    print('')
   
+  def playMove(self, player):
+    self.printBoard()
+    print(f"{player.getName()}'s turn to move")
+    col_cnt = self._grid.getColumn()
+
+    IO = int(input(f"Enter column between 0 and {col_cnt - 1} to add piece: "))
+    move = self._grid.placePiece(IO, player.getPieceColor())
+
+    return (move, IO)
+  
+  def playRound(self):
+    while True:
+      for player in self._players:
+        row, col = self.playMove(player)
+        clr = player.getPieceColor()
+
+        if self._grid.checkWin(self._connect_n, row, col, clr):
+          self._score[player.getName()] += 1
+          return player 
+  
+  def play(self):
+    winner = None
+    max_score = 0
+    while max_score < self._targetScore:
+      winner = self.playRound()
+      print(f"{winner.getName()} won the round")
+      max_score = max(max_score, self._score[winner.getName()])
+
+      # restart grid for new round
+      self._grid.initGrid()
+    print(f"{winner.getName()} won the game!")
+
+
+grid = Grid(6, 7)
+game = Game(grid, 4, 2)
+game.play()
