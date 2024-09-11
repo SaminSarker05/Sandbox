@@ -29,3 +29,10 @@ threading - distributing processes between threads for the core
 - enables concurrent running if one thread becomes idle/hangs
 
 core able to go in between threads as to not pause a process if one is hanging
+
+[cucurrently] = using threading to switch between thread operations when one starts to hand 
+[parallelism] = multiple operations running at same time; can be done using multiple cores
+[threading/cucurrent execution] != [parallelism]
+
+in python .join ensures we don't continue until a thread has finished
+we still switch between threads when one is hanging but we wait
