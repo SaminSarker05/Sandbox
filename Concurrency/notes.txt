@@ -1,0 +1,31 @@
+https://www.youtube.com/watch?v=olYdb0DdGtM&ab_channel=TechWithTim
+
+cpu = central processing unit
+each processsor has a number of cores
+
+amount of cores on computer = amount of things that can happen concurrently at same time
+e.g if cpu has 4 cores --> we can do 4 operations at same time
+
+parallelism - idea of multiple operations happening at same time
+clock speed - a rate of operations EACH CORE can run per second
+
+a cpu has a number of cores
+the number of cores dictates how many parallel operations can happen at same time 
+
+thread - one program/set of operations
+each thread is assigned to a core 
+threading - function to determine sequence of how to run threads 
+  - threading can happpen on one core or several 
+  - not happening in parallel 
+  - usefulness - when a thread is hanging/waiting core can run another thread 
+
+concurrent programming - idea of threading and executing operations in different sequeunces 
+parallism - executing operations at the same time 
+
+threads get distributed among the cpu cores 
+each core can do one thing at a time 
+
+threading - distributing processes between threads for the core 
+- enables concurrent running if one thread becomes idle/hangs
+
+core able to go in between threads as to not pause a process if one is hanging
