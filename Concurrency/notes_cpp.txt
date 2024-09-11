@@ -38,3 +38,8 @@ meaning some things wont still work even if data types wrapped with atomic e.g x
 
 condition_variable - synchornization method to block/sleep threads to prevent cylic lock checking 
 e.g worker and reporter threads
+
+concurrency != parallelism
+
+thread::this_thread --> reference to current thread function
+thread::this_thread::sleep_for(time) --> makes thread sleep for duration specified
