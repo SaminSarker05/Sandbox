@@ -1,5 +1,5 @@
 concurrency - running threads in sequence; if one thread waits we move to execute another operation 
-concurrency != parallelism
+concurrency/threading != parallelism
 
 - concurrency: order matters and tasks must wait
 - parallelism: everything happens at once 
@@ -15,8 +15,8 @@ best to use threads in heavy computation and seperating work
 
 in c++ there is the standard thread library
 
-synchornization - creating order between when threads are running 
-use .join() method so we wait for a threads completion
+synchornization - creating order between threads when running 
+use .join() method so we wait for a threads completion before parent script 
 
 ensure you are using correct version of C++ >= 11 can pass -std=c++17 flag to g++ compiler
 
@@ -25,14 +25,14 @@ can create threads with lambda functions as well
 threads can also share data --> but need to be careful
 
 data race [type of error]
-possible problem: reading and writing of shared_values by threads
+possible problem: reading and writing of shared_values by threads; leads to undefined behavior
 
-std::mutex = mutual exclusive
+std::mutex = mutual exclusive;
 only a single thread can read/write from a shared value at any time
 
 Better then mutex
 std::atomic = indivisible operation
-can use atomic data type to template shared values so they reading/writing is locked to single thread at any time
+can use atomic [data type] to template shared values so they reading/writing is locked to single thread at any time
 certain operations overloaded including x++, x+=1
 meaning some things wont still work even if data types wrapped with atomic e.g x = x + 1
 
@@ -43,3 +43,12 @@ concurrency != parallelism
 
 thread::this_thread --> reference to current thread function
 thread::this_thread::sleep_for(time) --> makes thread sleep for duration specified
+
+std::mutex gLock (global lock)
+
+gLock.lock()
+gLock.unlock()
+// can use to lock access to a variable/code block for a thread
+
+std::atomic<std::int> globalInt = 0;
+// data type to ensure exclusive access between threads

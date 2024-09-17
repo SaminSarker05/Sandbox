@@ -14,14 +14,13 @@ int main() {
   std::vector<std::thread> threads;
   // first launch 10 threads
   for (int i = 0; i < 10; i++) {
-    threads.push_back(std::thread(lambda, i));
+    threads.push_back(std::thread(lambda, i)); // can pass in function arguments
   }
-  // then join the threads and wait for their execition to finish before going back to main thread
+  // then join the threads and wait for their execition to finish before going back to main program
   for (int i = 0; i < 10; i++) {
     threads[i].join();
   }
   // interleaving of thread outputs
-
 
   // to make a thread create a thread object passing in address to function and any arguments
   // std::thread t1(lambda, 100);

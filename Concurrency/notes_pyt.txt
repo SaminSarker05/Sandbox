@@ -17,7 +17,7 @@ each thread is assigned to a core
   - not happening in parallel 
   - usefulness - when a thread is hanging/waiting core can run another thread 
 
-concurrent programming - idea of threading and executing operations in different sequeunces 
+concurrent programming - idea of threading and executing operations in sequeunce
 parallism - executing operations at the same time 
 
 threads get distributed among the cpu cores 
@@ -32,6 +32,7 @@ core able to go in between threads as to not pause a process if one is hanging
 [parallelism] = multiple operations running at same time; can be done using multiple cores
 [threading/cucurrent execution] != [parallelism]
 [multiprocessing] - use of multiple cores
+[multithreading] - use of threading and exuctiing operations in sequence
 
-in python .join ensures we don't continue until a thread has finished
+in python .join ensures we don't continue until a thread has finished; ie python script/parent process does not finish before 
 we still switch between threads when one is hanging but we wait

@@ -10,8 +10,8 @@ def call():
     ls.append(i)
     time.sleep(0.5)
 
-x = threading.Thread(target=call, args=())
-x.start()
+x = threading.Thread(target=call, args=())  # use threading library to create a thread. pass in function call and arguments
+x.start() # need to start thread
 
 print('script thread sending operation...')
 x.join()  # won't go past this line until thread has stopped
