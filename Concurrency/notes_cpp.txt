@@ -52,3 +52,6 @@ gLock.unlock()
 
 std::atomic<std::int> globalInt = 0;
 // data type to ensure exclusive access between threads
+
+thead vs process
+thread is a unit of execution in process; smaller than a process
