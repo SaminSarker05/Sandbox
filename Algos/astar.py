@@ -27,6 +27,48 @@ Steps
   - check all 8 adjacent squares
     - if not valid move or already seen ignore
     - otherwise calculate f, g, and heuristic function
+"""
+
+class Node:
+  def __init__(self, parent=None, position=None):
+    self.parent = parent # need to track previous node
+    self.position = position
+
+    self.g = 0 # distnace from current and src node
+    self.h = 0 # heuristic function
+    self.f = 0
+
+
+
+# given matrix of 0s and 1s
+# find path from src to target
+# 1s represent walls and 0s represent an empty valid space/move
+# start and end are x, y coordinates
+def a_star(maze, start, end):
+
+  # create start/end nodes
+  src = Node(None, start)
+  target = Node(None, end)
+
+  q = deque()
+  seen = set()
+
+  while q:
+    # extract node with smallest f value/cost from deque
+    curr_node = q.popleft()
+    for other_node in q:
+      if other_node.f < curr_node.f:
+        curr_node = other_node
+      
+    # add node to seen/visited list
+    seen.add(curr_node)
+
+    if curr_node == target:
+      
+
+
     
 
-"""
+
+
+  
