@@ -39,7 +39,6 @@ class Node:
     self.f = 0
 
 
-
 # given matrix of 0s and 1s
 # find path from src to target
 # 1s represent walls and 0s represent an empty valid space/move
@@ -56,10 +55,12 @@ def a_star(maze, start, end):
   while q:
     # extract node with smallest f value/cost from deque
     curr_node = q.popleft()
+    curr_ind = 0
     for other_node in q:
       if other_node.f < curr_node.f:
         curr_node = other_node
-      
+        curr_ind += 1
+
     # add node to seen/visited list
     seen.add(curr_node)
 
