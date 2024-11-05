@@ -1,0 +1,2 @@
+API - application programming interface; set of rules that allows communcation between software
+- can handle different requests; and returns responses
